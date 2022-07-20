@@ -19,8 +19,11 @@
         />
       </div>
     </div>
-    <cont3xt-domain
-      :data="data"
+    <cont3xt-domain v-if="data.domain"
+        :data="data"
+    />
+    <cont3xt-ip v-else
+        :data="data"
     />
   </b-card>
 </template>
@@ -28,6 +31,7 @@
 <script>
 import Cont3xtField from '@/utils/Field';
 import Cont3xtDomain from '@/components/itypes/Domain';
+import Cont3xtIp from '@/components/itypes/IP';
 import IntegrationBtns from '@/components/integrations/IntegrationBtns';
 
 export default {
@@ -35,6 +39,7 @@ export default {
   components: {
     Cont3xtField,
     Cont3xtDomain,
+    Cont3xtIp,
     IntegrationBtns
   },
   props: {
