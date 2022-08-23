@@ -2,17 +2,19 @@ import Vue from 'vue';
 import moment from 'moment-timezone';
 
 /**
- * Removes time component of an ISO 8601 date string
+ * Removes time component of an ISO 8601 date string or string in format 'YYYY-MM-DD ...'
  * @example
  * '{{ "1996-03-07T21:00:00.000-08:00" | removeTime }}'
  * this.$options.filters.removeTime('1996-03-07T21:00:00.000-08:00');
  *
- * @param {String} dateStringWTime - The time using ISO 8601
+ * @param {String} dateStr - The time using ISO 8601 or date string with a space after YYYY-MM-DD
  * @returns {String} - Date string without time
  */
-export const removeTime = function (dateStringWTime) {
-  if (!dateStringWTime) { return ''; }
-  return dateStringWTime.split('T')[0];
+export const removeTime = function (dateStr) {
+  if (!dateStr) { return ''; }
+  if (dateStr.includes('T')) { return dateStr.split('T')[0]; }
+  // if the date string is not formatted in ISO 8601 with the 'T', try space instead
+  return dateStr.split(' ')[0];
 };
 Vue.filter('removeTime', removeTime);
 

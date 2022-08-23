@@ -6,6 +6,7 @@ test('removeTime', () => {
   expect(filters.removeTime()).toBe(''); // default
   expect(filters.removeTime('1996-03-07T21:00:00.000-08:00')).toBe('1996-03-07');
   expect(filters.removeTime('2022-03-14T09:56:21.123-05:00')).toBe('2022-03-14');
+  expect(filters.removeTime('2022-03-14 05:00:00+11')).toBe('2022-03-14');
 });
 
 test('dateString', () => {
